@@ -21,16 +21,34 @@ public class Node {
     // TODO:: Implement to return the length of the SinglyLinkedList
     // For example:: --> 5 --> 6 --> 7 --> 3 --> .
     public void printNodes() {
+        Node n = this;
+        while (n != null) {
+            System.out.print(" --> " + n.data);
+            n = n.following;
+        }
+        System.out.println(" --> .");
     }
 
     // TODO:: Implement to return the length of the SinglyLinkedList
     int length(Node h) {
-        return 0;
+        int count = 0;
+        Node n = h;
+        while (n != null) {
+            count++;
+            n = n.following;
+        }
+        return count;
     }
 
     // TODO:: Implement to return the sum of the Nodes
     int sumOfNodes() {
-        return 0;
+        int sum = 0;
+        Node n = this;
+        while (n != null) {
+            sum += n.data;
+            n = n.following;
+        }
+        return sum;
     }
 
     Node deleteNode(Node head, int data) {
@@ -38,9 +56,13 @@ public class Node {
         if (n.data == data) {
             return head.following;
         }
-        // TODO:: Implement the proper loop in order to remove given data
-
-        //
+        while (n.following != null) {
+            if (n.following.data == data) {
+                n.following = n.following.following;
+                return head;
+            }
+            n = n.following;
+        }
         return head;
     }
 }
